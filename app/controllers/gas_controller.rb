@@ -7,7 +7,7 @@ class GasController < ApplicationController
   end
 
   def show
-    state = Gas.find_by(state: params[:state].upcase).to_json({ only: [:state, :price] })
+    state = Gas.find_by(state: gas_params[:state].upcase).to_json({ only: [:state, :price] })
     if state
       render json: state, status: 200
     else
