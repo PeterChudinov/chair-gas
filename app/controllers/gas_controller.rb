@@ -2,17 +2,17 @@ class GasController < ApplicationController
   before_action :reload_price
 
   def index
-    prices = Gas.order(state: :asc).to_json({ only: [:state, :price] })
-    render json: prices, status: 200
+    @prices = Gas.order(state: :asc)#.to_json({ only: [:state, :price] })
+    #render html: prices, status: 200
   end
 
   def show
-    state = Gas.find_by(state: gas_params[:state].upcase).to_json({ only: [:state, :price] })
-    if state
-      render json: state, status: 200
-    else
-      render json: "state does not exist", status: 422
-    end
+    @state = Gas.find_by(state: gas_params[:state].upcase)#.to_json({ only: [:state, :price] })
+    # if state
+    #   render json: state, status: 200
+    # else
+    #   render json: "state does not exist", status: 422
+    # end
   end
 
 private
